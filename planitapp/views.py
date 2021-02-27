@@ -50,8 +50,8 @@ def log_in(request):
         error = 'Invalid login'
         return render(request, "main/login.html", {'error':error})
 
-def user_page(request):
-    login_username = request.POST.get('login_username')
+def user_page(request, login_username2):
+    login_username2 = request.POST.get('login_username2')
     print(login_username)
     #return render(request, login_username+'.html')
     return HttpResponseRedirect("/")
