@@ -11,6 +11,12 @@ from . import models
  
 def home(request):
     planit_items = models.User.planit.objects.all().order_by("-added_date")
+    if request.user.is_authenticated == True:
+        print('True')
+    
+    else: 
+        print('False')
+
     return render(request, 'main/index.html', {"planit_items" : planit_items})
 
 @csrf_exempt
@@ -36,7 +42,7 @@ def login(request):
 def log_in(request):
     login_username = request.POST.get("login_username")
     login_password = request.POST.get('login_password')
-    next = request.GET.get("next")
+
     user = auth.authenticate(username=login_username, password=login_password)
     if user is not None and user.is_active:
         # Correct password, and the user is marked "active"
@@ -46,12 +52,14 @@ def log_in(request):
         return HttpResponseRedirect('/user_page')
     else:
         print('not loggedin')
+        message = 'You are not Logged in'
+        stuff ={'message':message}
         # Show an error page
-        error = 'Invalid login'
-        return render(request, "main/login.html", {'error':error})
+        return render(request, "main/login.html", stuff)
 
-def user_page(request, login_username2):
-    login_username2 = request.POST.get('login_username2')
-    print(login_username)
-    #return render(request, login_username+'.html')
-    return HttpResponseRedirect("/")
+def user_page(request):
+    if request.user.is_authenticated:
+        print(request.user)
+    user = str(request.user)
+    userpage = 'Users/'+user+'.html'
+    return render(request, userpage)
