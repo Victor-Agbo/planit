@@ -1,29 +1,34 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Plan ~ it | Ultimate Task Scheduler</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, intial-scale=1"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link href="https://googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="{% static '/css/style.css' %}" rel="stylesheet">
-        <script src="{% static '/js/controller.js' %}" type="text/javascript"></script>
-    </head>
-<body onfocus="popup()">
-   
-    <nav class="z-depth-2" style="background-color: rgb(0, 0, 100);">
-        <div class="container nav-wrapper">
-            <a href="/" class="brand-logo left" style="font-size: 40px;">Plan ~ it</a>
-            <a style="border-color: rgb(255,255,255); border-width: 1px; padding-left: 10px" href="/sign_up" class="right"><!--<i class="tiny material-icons left">directions_walk</i>-->Sign Up</a>
-            <a href="/login" class="right">Login</a>
-            
-    </div>
-    </nav>
 
-<div style="text-align:center; background-color:rgb(255, 99, 71); color: rgb(255, 255, 255)"><i>The Ultimate Task Scheduler</i></div>
-{% block content %} {% endblock content %}
-<p class="center" style="padding-top:20px">© Agbo Victor - 2021</p>
+<head>
+  <meta charset="UTF-8">
+  <title>Plan ~ it | Ultimate Task Scheduler</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, intial-scale=1" />
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static '/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="blue">
+    <div class="container ">
+      <a href="/" class="brand-logo left">Plan ~ It</a>
+      <ul id="nav-mobile" class="right">
+        <li><a class="waves-effect right" href="/login">Login</a></li>
+        <li><a class="right" href="/signup">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div style="text-align:center; background-color:rgb(255, 99, 71); color: rgb(255, 255, 255)"><i>The Ultimate Task Scheduler</i></div>
+
+  {% block content %} {% endblock content %}
+  <p class="center" style="padding-top:20px">© Agbo Victor - 2021</p>
 </body>

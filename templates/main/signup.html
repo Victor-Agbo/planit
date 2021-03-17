@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<form action="{% url 'log_in' %}" method='post' class="form-inline" style="padding-top:30px">
+
+<h5 class="center">Sign Up Here</h5>
+<div class="container" style="padding-top:30px">
+  <div class="container" style="border-style: groove; border-width: 2px">
+    <div class="container" style="padding: 30px">
+      {% csrf_token %}
+
+      <label for="login_username">First Name</label>
+      <input class="validate" type="text" name="login_username" value="" id="login_username" required >
+        
+      <label for="password">Password:</label>
+      <input type="password" name="login_password" value="" id="login_password"></input>
+
+        <button class="btn waves-effect waves-light" type="submit" value="login">Login</button>
+        
+            <i id="message">{{ message }}</i>            
+          </div>
+    </div>
+</div>
+        {% endblock %}
+

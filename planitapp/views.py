@@ -10,14 +10,13 @@ from . import models
 
  
 def home(request):
-    planit_items = models.User.planit.objects.all().order_by("-added_date")
     if request.user.is_authenticated == True:
         print('True')
     
     else: 
         print('False')
 
-    return render(request, 'main/index.html', {"planit_items" : planit_items})
+    return render(request, 'main/index.html')
 
 @csrf_exempt
 def add_planit(request):
@@ -58,8 +57,10 @@ def log_in(request):
         return render(request, "main/login.html", stuff)
 
 def user_page(request):
+    planit_items = models.User.planit.objects.all().order_by("-added_date")
+
     if request.user.is_authenticated:
         print(request.user)
     user = str(request.user)
     userpage = 'Users/'+user+'.html'
-    return render(request, userpage)
+    return render(request, userpage, {"planit_items" : planit_items})
