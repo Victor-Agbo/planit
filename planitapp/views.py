@@ -59,6 +59,17 @@ def log_in(request):
 def signup(request):
     return render(request, "main/signup.html")
 
+def sign_up(request):
+    signup_username = request.POST.get("signup_username")
+    signup_password = request.POST.get("signup_password")
+    for user in models.User.planit.objects.all():
+        if user.username == signup_username:
+             message = 'Username Taken Already'
+             stuff ={'message':message}
+             return render(request, "main/signup.html", stuff)
+        else:
+            return render(request, "main/signup.html")
+
 def user_page(request):
     planit_items = models.User.planit.objects.all().order_by("-added_date")
 
