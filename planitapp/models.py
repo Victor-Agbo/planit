@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, AbstractUser
 # Create your models here.
 
 class planner(models.Model):
-    person = models.OneToOneField(models.User, on_delete = models.CASCADE)
+    person = models.OneToOneField(User, on_delete = models.CASCADE)
     data = models.CharField(maxlength = inf)
     
     class Meta:
