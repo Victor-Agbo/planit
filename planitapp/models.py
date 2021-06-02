@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, AbstractUser
 class planner(models.Model):
     inf = 10**10000
     person = models.OneToOneField(User, on_delete = models.CASCADE)
-    data = models.CharField(maxlength = inf)
+    data = models.CharField(max_length = inf)
     
     class Meta:
         verbose_name_plural = 'PLANNERS'
