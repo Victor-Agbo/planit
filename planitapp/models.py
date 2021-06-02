@@ -11,7 +11,7 @@ class planner(models.Model):
         verbose_name_plural = 'PLANNERS'
         
     def __str__(self):
-        return '{}'.format(self.person')
+        return '{}'.format(self.person)
 '''    
 class planit(models.Model):
     added_date = models.DateTimeField()
