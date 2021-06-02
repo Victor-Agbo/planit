@@ -2,7 +2,7 @@
 
 {% block content%}
 
-<form action="{% url 'log_in' %}" method='post' class="form-inline" style="padding-top:30px">
+<form action="{% url 'sign_up' %}" method='post' class="form-inline" style="padding-top:30px">
 
 <h5 class="center">Sign Up Here</h5>
 <div class="container" style="padding-top:30px">
@@ -11,10 +11,10 @@
       {% csrf_token %}
 
       <label for="login_username">First Name</label>
-      <input class="validate" type="text" name="login_username" value="" id="login_username" required >
+      <input class="validate" type="text" name="signup_username" value="" id="signup_username" required >
         
       <label for="password">Password:</label>
-      <input type="password" name="login_password" value="" id="login_password"></input>
+      <input type="password" name="signup_password" value="" id="signup_password" required></input>
 
         <button class="btn waves-effect waves-light" type="submit" value="login">Login</button>
         
