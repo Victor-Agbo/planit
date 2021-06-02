@@ -55,6 +55,9 @@ def log_in(request):
         stuff ={'message':message}
         # Show an error page
         return render(request, "main/login.html", stuff)
+       
+def signup(request):
+    pass
 
 def user_page(request):
     planit_items = models.User.planit.objects.all().order_by("-added_date")
