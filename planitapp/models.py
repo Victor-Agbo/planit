@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, AbstractUser
 # Create your models here.
 
 class planner(models.Model):
+    inf = 10**10000
     person = models.OneToOneField(User, on_delete = models.CASCADE)
     data = models.CharField(maxlength = inf)
     
