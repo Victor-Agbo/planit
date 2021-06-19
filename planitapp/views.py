@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils import timezone
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import auth, messages
+import datetime
 
 from . import models
 
@@ -16,16 +17,19 @@ def home(request):
     else: 
         print('False')
 
-    return render(request, 'main/index.html')
-
+    return render(request, 'main/index.html') 
+    
 @csrf_exempt
 def add_planit(request):
-    added_date = timezone.now()
+    current_user = request.user
+    creator = models.planner.objects.get(account=current_user)
+    print(type(creator.data))
     content = request.POST["content"]
-    created_obj = models.User.planit.objects.create(added_date=added_date, text=content)
-    print(created_obj)
-    print(created_obj.id)
-    length_of_planits=models.planit.objects.all().count()
+    creator.data = creator.data+'║'+content
+    creator.time = creator.time+'║'+datetime.datetime.now()
+    print(creator.data)
+    creator.save()
+    print(creator.time)
     return HttpResponseRedirect("/user_page")
 
 @csrf_exempt
@@ -55,26 +59,15 @@ def log_in(request):
         stuff ={'message':message}
         # Show an error page
         return render(request, "main/login.html", stuff)
-       
+#, {"planit_items" : planit_items}
 def signup(request):
-    return render(request, "main/signup.html")
-
-def sign_up(request):
-    signup_username = request.POST.get("signup_username")
-    signup_password = request.POST.get("signup_password")
-    for user in models.User.planit.objects.all():
-        if user.username == signup_username:
-             message = 'Username Taken Already'
-             stuff ={'message':message}
-             return render(request, "main/signup.html", stuff)
-        else:
-            return render(request, "main/signup.html")
-
+    return render('main/login.html')
 def user_page(request):
-    planit_items = models.User.planit.objects.all().order_by("-added_date")
+    #planit_items = models.User.planit.objects.all().order_by("-added_date")
 
     if request.user.is_authenticated:
         print(request.user)
     user = str(request.user)
     userpage = 'Users/'+user+'.html'
-    return render(request, userpage, {"planit_items" : planit_items})
+    return render(request, userpage)
+    #, {"planit_items" : planit_items}
