@@ -1,50 +1,59 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.utils import timezone
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import auth, messages
 import datetime
-
 from . import models
 
 # Create your views here.
-
  
 def home(request):
     if request.user.is_authenticated == True:
-        print('True')
+        return HttpResponseRedirect("/user_page")
     
     else: 
-        print('False')
+        return render(request, 'main/index.html') 
 
-    return render(request, 'main/index.html') 
     
 @csrf_exempt
 def add_planit(request):
     current_user = request.user
     creator = models.planner.objects.get(account=current_user)
-    print(type(creator.data))
     content = request.POST["content"]
-    creator.data = creator.data+'║'+content
-    creator.time = creator.time+'║'+datetime.datetime.now()
-    print(creator.data)
+    print(str(datetime.datetime.now())[10])
+    time = str(datetime.datetime.now())
+    time=time[0:10]+'_'+time[11:]
+    creator.data = creator.data+time+'ʭ'+content+'ʬ'
+    print(content)
     creator.save()
-    print(creator.time)
     return HttpResponseRedirect("/user_page")
 
 @csrf_exempt
-def delete_planit(request, planit_id):
-    models.planit.objects.get(id=planit_id).delete()
+def delete_planit(request):
+    time = request.POST["time"]
+    current_user = request.user
+    creator = models.planner.objects.get(account=current_user)
+    creator.data = creator.data
+    a=creator.data[creator.data.index(time):]
+    b=creator.data.index(a)
+    c=a.index('ʬ')
+    d=b+c+1
+    e = creator.data[b:d]
+    creator.data = creator.data.replace(e, '')
+    print(creator.data)
+    creator.save()
+
+
     return HttpResponseRedirect("/user_page")
 
 @csrf_exempt 
 def login(request):
     return render(request, "main/login.html")
 
-@csrf_exempt
+@csrf_exempt 
 def log_in(request):
     login_username = request.POST.get("login_username")
-    login_password = request.POST.get('login_password')
+    login_password = request.POST.get("login_password")
 
     user = auth.authenticate(username=login_username, password=login_password)
     if user is not None and user.is_active:
@@ -59,15 +68,26 @@ def log_in(request):
         stuff ={'message':message}
         # Show an error page
         return render(request, "main/login.html", stuff)
-#, {"planit_items" : planit_items}
+
 def signup(request):
     return render('main/login.html')
+    
 def user_page(request):
-    #planit_items = models.User.planit.objects.all().order_by("-added_date")
+    planit_items = models.planner.objects.get(account=request.user).data
+    planit_items = planit_items.split('ʬ')
+    planit_items.pop()
+    planit_items.reverse()
+
+    shown_items = []
+
+    for planit_item in planit_items:
+        main_items = planit_item.split('ʭ')
+        shown_items.append(main_items)
+    
 
     if request.user.is_authenticated:
         print(request.user)
     user = str(request.user)
     userpage = 'Users/'+user+'.html'
-    return render(request, userpage)
-    #, {"planit_items" : planit_items}
+
+    return render(request, userpage, {"planit_items" : shown_items})
