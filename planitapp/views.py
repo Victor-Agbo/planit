@@ -70,7 +70,7 @@ def log_in(request):
         return render(request, "main/login.html", stuff)
 
 def signup(request):
-    return render('main/login.html')
+    return render('main/signup.html')
     
 def user_page(request):
     planit_items = models.planner.objects.get(account=request.user).data
