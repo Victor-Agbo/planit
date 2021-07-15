@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4>
+  <div class="container">Add Item</div>
+</h4>
+
+<form action="add_planit/" method="POST" class="form-inline">
+  <div class="container">
+    <input class="form-control"
+      style="border-color: rgb(0, 37, 204); border-radius: 5px; border-style:groove; border-width: 1px;" name="content"
+      type="text" placeholder="  Add Item...">
+    <button style="background-color: rgb(0, 37, 204)" class="btn waves-effect waves-light" type="submit">ADD</button>
+  </div>
+</form>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+    </div>
+  </div>
+
+  <table class="striped">
+    <tbody>
+      {% for planit_date, planit_item in planit_items %}
+      <tr>
+        <td>{{planit_item}}</td>
+        <form action="delete_planit/" method="POST" class="form-inline">
+          <td><input class="form-control" name="time" style="visibility:hidden" type="text" value="{{planit_date}}"></td>
+          <td class="right"><button style="background-color: rgb(240, 0, 0);"
+              class="btn-small waves-effect waves-light">Delete</td>
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

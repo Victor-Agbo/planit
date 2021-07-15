@@ -11,4 +11,8 @@ class planner(models.Model):
         verbose_name_plural = 'PLANNERS'
     
     def __str__(self):
+<<<<<<< HEAD
         return '{}'.format(self.account)
+=======
+        return '{}'.format(self.account)
+>>>>>>> f7c889b979494f71528ffeedfbab88403f31b838

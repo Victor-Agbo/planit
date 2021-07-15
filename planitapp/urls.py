@@ -14,4 +14,8 @@ urlpatterns = [
 ]
     
 
+<<<<<<< HEAD
 urlpatterns += staticfiles_urlpatterns()
+=======
+urlpatterns += staticfiles_urlpatterns()
+>>>>>>> f7c889b979494f71528ffeedfbab88403f31b838
