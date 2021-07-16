@@ -2,25 +2,53 @@
 
 {% block content%}
 
-<form action="{% url 'sign_up' %}" method='post' class="form-inline" style="padding-top:30px">
+<form action="{% url 'sign_up' %}" method='post' class="form-inline col s12" style="padding-top:30px">
 
-<h5 class="center">Sign Up Here</h5>
-<div class="container" style="padding-top:30px">
+  <h5 class="center">Sign Up Here</h5>
   <div class="container" style="border-style: groove; border-width: 2px">
-    <div class="container" style="padding: 30px">
+    <div class="container" style="padding: 20px">
       {% csrf_token %}
 
-      <label for="login_username">First Name</label>
-      <input class="validate" type="text" name="signup_username" value="" id="signup_username" required >
-        
-      <label for="password">Password:</label>
-      <input type="password" name="signup_password" value="" id="signup_password" required></input>
+      <div class="row">
 
-        <button class="btn waves-effect waves-light" type="submit" value="login">Login</button>
-        
-            <i id="message">{{ message }}</i>            
-          </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input class="validate" id="signup_firstname" name="signup_firstname" type="text" required>
+          <label for="signup_firstname">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input class="validate" id="signup_lastname" name="signup_lastname" type="text" required>
+          <label for="signup_lastname">Last Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <div class="input-field col s6">
+          <input class="validate" id="password" type="password">
+          <label for="password">Password again</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mail</i>
+          <input class="validate" id="signup_email" name="signup_email" type="text" required>
+          <label for="signup_email">Email</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light" type="submit" value="login">Login</button>
+
+      <i id="message">{{ message }}</i>
     </div>
-</div>
-        {% endblock %}
+  </div>
+  </div>
 
+
+  {% endblock %}

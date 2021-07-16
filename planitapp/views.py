@@ -70,7 +70,11 @@ def log_in(request):
         return render(request, "main/login.html", stuff)
 
 def signup(request):
-    return render('main/signup.html')
+    return render(request, 'main/signup.html')
+
+@csrf_exempt
+def sign_up(request):
+    pass
     
 def user_page(request):
     planit_items = models.planner.objects.get(account=request.user).data
