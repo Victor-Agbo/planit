@@ -148,3 +148,9 @@ django_heroku.settings(locals())
 
 STATIC_ROOT='staticfiles'
 '''
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+os.environ['HTTPS'] = "on"
+
+os.environ['wsgi.url_scheme'] = 'https'

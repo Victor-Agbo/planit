@@ -24,12 +24,12 @@
 
       <div class="row">
         <div class="input-field col s6">
-          <i class="material-icons prefix">lock</i>
-          <input id="password" type="password" class="validate">
+          <i class="material-icons small prefix ">lock</i>
+          <input id="password" type="password" class="validate" required>
           <label for="password">Password</label>
         </div>
         <div class="input-field col s6">
-          <input class="validate" id="password" type="password">
+          <input class="validate" id="password" type="password" required>
           <label for="password">Password again</label>
         </div>
 
@@ -38,17 +38,23 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">mail</i>
-          <input class="validate" id="signup_email" name="signup_email" type="text" required>
+          <input class="validate" id="signup_email" name="signup_email" type="email" required>
           <label for="signup_email">Email</label>
         </div>
       </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">phone</i>
+          <input type="text" required>
+        </div>
+      </div>
+
 
       <button class="btn waves-effect waves-light" type="submit" value="login">Login</button>
 
       <i id="message">{{ message }}</i>
     </div>
   </div>
-  </div>
-
-
-  {% endblock %}
+</form>
+{% endblock %}
