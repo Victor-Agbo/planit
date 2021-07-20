@@ -92,6 +92,6 @@ def user_page(request):
     if request.user.is_authenticated:
         print(request.user)
     user = str(request.user)
-    userpage = 'Users/'+user+'.html'
+    userpage = 'Users/user_page.html'
 
     return render(request, userpage, {"planit_items" : shown_items})
