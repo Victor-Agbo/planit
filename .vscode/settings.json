@@ -1,9 +1,0 @@
-{
-<<<<<<< HEAD
-    "python.pythonPath": "/usr/bin/python3",
-=======
-    "python.pythonPath": "planit/bin/python3",
->>>>>>> f7c889b979494f71528ffeedfbab88403f31b838
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
-}
