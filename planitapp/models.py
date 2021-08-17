@@ -10,7 +10,6 @@ class Planner(models.Model):
     paid = models.CharField(choices=paid, max_length=1)
     timezone = models.CharField(max_length=5)
     phone_number = models.CharField(blank=True, max_length=5)
-    data = models.TextField(blank=True)
 
     class Meta:
         verbose_name_plural = 'PLANNERS'

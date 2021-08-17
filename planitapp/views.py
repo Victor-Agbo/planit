@@ -2,51 +2,47 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import auth, messages
-import datetime
+import datetime as dt
 import pytz
+import simplejson as json
 from . import models
 
 
 # Create your views here.
 
 def home(request):
-    """if request.user.is_authenticated == True:
+    if request.user.is_authenticated is True:
         return HttpResponseRedirect("/user_page")
-        pass
 
-    else:"""
-    return render(request, 'main/index.html')
+    else:
+        return render(request, 'main/index.html')
 
 
 @csrf_exempt
 def add_planit(request):
-    current_user = request.user
-    creator = models.Planner.objects.get(account=current_user)
     content = request.POST["content"]
     timezone = pytz.timezone('Africa/Lagos')
-    print(str(datetime.datetime.now())[10])
-    time = str(datetime.datetime.now(timezone))
-    time = time[0:10] + '_' + time[11:]
-    creator.data = creator.data + time + 'ʭ' + content + 'ʬ'
-    print(content)
-    creator.save()
+    read_file = open('db.json')
+    read_json = json.load(read_file)
+    read_json[str(request.user)]['main'][str(dt.datetime.now(timezone))] = content
+    print(read_json['victor'], type(read_json))
+
+    with open('db.json', 'w') as write_file:
+        json.dump(read_json, write_file)
     return HttpResponseRedirect("/user_page")
 
 
 @csrf_exempt
 def delete_planit(request):
     time = request.POST["time"]
-    current_user = request.user
-    creator = models.Planner.objects.get(account=current_user)
-    creator.data = creator.data
-    a = creator.data[creator.data.index(time):]
-    b = creator.data.index(a)
-    c = a.index('ʬ')
-    d = b + c + 1
-    e = creator.data[b:d]
-    creator.data = creator.data.replace(e, '')
-    print(creator.data)
-    creator.save()
+    read_file = open('db.json')
+    read_json = json.load(read_file)
+    user_data = read_json[str(request.user)]['main']
+    user_data.pop(time)
+
+    with open('db.json', 'w') as write_file:
+        json.dump(read_json, write_file)
+
 
     return HttpResponseRedirect("/user_page")
 
@@ -88,20 +84,23 @@ def sign_up(request):
 
 
 def user_page(request):
-    planit_items = models.Planner.objects.get(account=request.user).data
-    planit_items = planit_items.split('ʬ')
-    planit_items.pop()
-    planit_items.reverse()
+    if request.user.is_authenticated is True:
+        shown_items = []
+        read_file = open('db.json')
+        read_json = json.load(read_file)
+        user_data = read_json[str(request.user)]['main']
+        b = read_json[str(request.user)]['main'].values()
 
-    shown_items = []
+        for key in user_data:
+            shown_items.append([key, user_data.get(key)])
 
-    for planit_item in planit_items:
-        main_items = planit_item.split('ʭ')
-        shown_items.append(main_items)
+        shown_items.reverse()
+        print(shown_items)
 
-    if request.user.is_authenticated:
-        print(request.user)
-    user = str(request.user)
-    userpage = 'Users/user_page.html'
+        return render(request, 'Users/user_page.html', {"planit_items": shown_items})
 
-    return render(request, userpage, {"planit_items": shown_items})
+    else:
+        message = 'You are logged out you need to log in to continue'
+        stuff = {'message': message}
+        return render(request, "main/login.html", stuff)
+
