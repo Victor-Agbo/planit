@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<!--
 <form action="add_planit/" class="form-inline" method="POST">
   <div class="container">
     <div class="input-field col s12">
@@ -12,8 +12,102 @@
       <label for="add_input">Add Item</label>
       <button class="btn waves-effect waves-light" style="background-color: rgb(0, 37, 204)" type="submit">ADD</button>
     </div>
+
   </div>
+</form>-->
+<div class="container">
+  <button class="btn blue darken-4 large" id="open_form"><i class="material-icons">add_circle_outline</i>add new task
+  </button>
+</div>
+
+<style>
+  .up-button {
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+<div class="container" id="task_form" style="border-radius:8px; border-style: groove; border-width: 2px; display:none;">
+  <button class="btn large right transparent z-depth-0" id="close_form"><i
+          class="material-icons large red-text accent-4">close</i></button>
+
+  <h6>Add Task</h6>
+  <form action="add_planit/" class="form-inline" method="POST">
+    <div class="container">
+      <div class="input-field col s12">
+        <input class="form-control" id="add_input"
+               name="content"
+               style="border-color: rgb(0, 37, 204); border-radius: 4px; border-style:groove; border-width: 1px;"
+               type="text" required>
+        <label for="add_input">What do you want to do?</label>
+        <button class="btn waves-effect waves-light" style="background-color: rgb(0, 37, 204)" type="submit">ADD
+        </button>
+      </div>
+      <div class="row">
+        <div class="input-field col s3">
+          <input class="datepicker form-control" id="start_date"
+                 name="content" placeholder="Start Date"
+                 style="border-color: rgb(0, 37, 204); border-radius: 3px;"
+                 type="text">
+        </div>
+        <div class="input-field col s3">
+          <input class="timepicker form-control" id="start_time"
+                 name="content" placeholder="Start Time"
+                 style="border-color: rgb(0, 37, 204); border-radius: 3px;"
+                 type="text">
+        </div>
+        <div class="input-field col s3">
+          <input class="datepicker form-control" id="end_date"
+                 name="content" placeholder="End Date"
+                 style="border-color: rgb(0, 37, 204); border-radius: 3px;"
+                 type="text">
+        </div>
+        <div class="input-field col s3">
+          <input class="timepicker form-control" id="end_time"
+                 name="content" placeholder="End Time"
+                 style="border-color: rgb(0, 37, 204); border-radius: 3px; font-size:14px;"
+                 type="text">
+        </div>
+
+        <div class="input-field col s6">
+          <input class="form-control" id="end_time"
+                 name="content"
+                 style="border-color: rgb(0, 37, 204); border-radius: 4px; border-style:groove; border-width: 1px;"
+                 type="text">
+          <label for="end_time">When do You want to end?</label>
+        </div>
+
+      </div>
+
+    </div>
+
+
+</div>
+
 </form>
+</div>
+
+
+<script>
+
+</script>
+
 
 <div class="container">
   <div class="row">
@@ -30,8 +124,10 @@
         <td><input class="form-control" name="time" style="width:0px" type="text" value="{{planit_date}}">
         </td>
         <td class="right">
-          <button style="background-color: rgba(240, 0, 0, 0);"
-                  class="btn-small waves-effect waves-light z-depth-0"><i class="material-icons red-text" style="font-size :32px;">delete</i>
+          <button class="btn-small transparent waves-effect waves-light z-depth-0"><i
+                  class="material-icons red-text accent-4"
+                  style="font-size :32px;">delete</i>
+          </button>
         </td>
       </form>
     </tr>
@@ -39,5 +135,6 @@
     </tbody>
   </table>
 </div>
-
+<script>
+</script>
 {% endblock content %}

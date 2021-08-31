@@ -1,15 +1,12 @@
-function autofill() {
-    if (document.getElementById("same").checked) {
-        document.getElementById("login_username2").value = document.getElementById("login_username").value;
-    }
-    else {
-        document.getElementById("login_username2").value = "";
-    }
-}
+$(document).ready(function(){
+    $( "#open_form" ).click(function() {
+        $( "#task_form" ).show();
+    });
+});
 
-setTimeout(function popup() {
-    if (document.getElementById("message").value == "You are not Logged in") {
-        alert("You're not logged in")
-    }
-}, 10
-)
+$(document).ready(function(){
+    $( "#close_form" ).click(function() {
+        $( "#task_form" ).hide();
+    });
+});
+

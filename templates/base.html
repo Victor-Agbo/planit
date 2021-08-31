@@ -27,57 +27,63 @@
 
 <body>
 <main>
-<nav class="indigo darken-4">
-  <div class="container ">
-    <a class="brand-logo left" href="/">Plan ~ It</a>
-    <ul class="right" id="nav-mobile">
-      <!-- Dropdown Trigger -->
-      <li class='dropdown-trigger btn indigo darken-4 right z-depth-0' data-target='dropdown1'>
-        <i class="small material-icons">
-          menu
-        </i>
-      </li>
-    </ul>
-    <ul class='dropdown-content' id='dropdown1'>
-      <li><a class="indigo-text darken-4 waves-effect waves-light" href="/login">Login</a></li>
-      <li><a class="indigo-text darken-4 waves-effect waves-light" href="/signup">Sign Up</a></li>
+  <div class="navbar-fixed">
+    <nav class="indigo darken-4">
+      <div class="container ">
+        <a class="brand-logo left" href="/">Plan ~ It</a>
+        <ul class="right" id="nav-mobile">
+          <!-- Dropdown Trigger -->
+          <li class='dropdown-trigger btn indigo darken-4 right z-depth-0' data-target='dropdown1'>
+            <i class="small material-icons">
+              menu
+            </i>
+          </li>
+        </ul>
+        <ul class='dropdown-content' id='dropdown1'>
+          <li><a class="indigo-text darken-4 waves-effect waves-light" href="/login">Login</a></li>
+          <li><a class="indigo-text darken-4 waves-effect waves-light" href="/signup">Sign Up</a></li>
 
-    </ul>
-    <script>$('.dropdown-trigger').dropdown();
-
-    </script>
-  </div>
-  <div>
-</nav>
-<div class="orange darken-3 white-text" style="text-align:center; "><i>The Ultimate
-  Task Scheduler</i></div>
-<ul class="sidenav" id="slide-out">
-  <li>
-    <div class="user-view">
-      <div class="background">
-        <img src="images/office.jpg">
+        </ul>
+        <script>
+        $('.dropdown-trigger').dropdown();
+        </script>
       </div>
-      <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div>
-  </li>
-  <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-  <li><a href="#!">Second Link</a></li>
-  <li>
-    <div class="divider"></div>
-  </li>
-  <li><a class="subheader">Subheader</a></li>
-  <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-</ul>
-<a class="sidenav-trigger" data-target="slide-out" href="#"><i class="material-icons">menu</i></a>
+    </nav>
+  </div>
+  <div class="orange darken-3 white-text" style="text-align:center; "><i>The Ultimate
+    Task Scheduler</i></div>
+  <ul class="sidenav" id="slide-out">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="images/office.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+        <a href="#name"><span class="white-text name">John Doe</span></a>
+        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div>
+    </li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
+  <a class="sidenav-trigger" data-target="slide-out" href="#"><i class="material-icons">menu</i></a>
 <script>
-$(document).ready(function(){
-    $('.sidenav').sidenav();
+  $(document).ready(function(){
+   $('.sidenav').sidenav();
   });
-
-</script>
-{% block content %} {% endblock content %}
-<p class="center" style="padding-top:20px">© Agbo Victor - 2021</p>
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+  $(document).ready(function(){
+    $('.timepicker').timepicker();
+  });
+  </script>
+  {% block content %} {% endblock content %}
+  <p class="center" style="padding-top:20px">© Agbo Victor - 2021</p>
 </main>
 </body>
